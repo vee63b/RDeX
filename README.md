@@ -38,6 +38,14 @@ Phone screen → Android apps, camera, messaging, etc.
 External display → desktop workspace
 
 ---
+### Pre-Reqs
+---
+you can get all 3 of these from F-Droid or Droidify, but I'd recommend the GitHub version since F-Droid/Droidify updates lag behind the GitHub version.
+
+Termux - https://github.com/termux/termux-app
+Termux:X11 - https://github.com/termux/termux-x11
+Termux:Widget - https://github.com/termux/termux-widget
+---
 
 # Install RDeX
 
@@ -272,6 +280,7 @@ Steps:
 ---
 
 # Input Behavior in Console Mode
+Due to Gravity X taking over KBM when in Console Mode to remap into touch input:
 
 | Device | Behavior |
 |------|------|
@@ -284,7 +293,7 @@ RDeX provides alternate right-click mappings:
 CTRL + .
 ALT + .
 ```
-
+Both will *Right-Click* where the mouse cursor is.
 ---
 
 # Installation Pipeline
@@ -316,10 +325,10 @@ RDeX provisioning is **idempotent**.
 If the desktop becomes misconfigured, simply run:
 
 ```
-bash install_RDeX.sh
+bash ~/storage/shared/RDeX/install_RDeX.sh
 ```
 
-This restores the environment to its original configured state.
+This restores the environment to its original configured state. Note, this is the same as a Chromebook Hard Reset. 
 
 ---
 
@@ -339,8 +348,34 @@ ai             -> Invoke CLI AI assistant
 
 # Management Tools
 
+### Termai
+Within terminal you can use the command 'ai' for help. On First run it will ask you to select Gemini or ChatGPT, it will then direct you to getting your API key. Once you've provided your API key the command 'ai' becomes available for use. Keep in mind this is not a vibecode tool, more like an 'AI man' command.
+
+---
+
+Termai - A CLI AI Assistant
+A lightweight CLI tool for AI integration in your terminal.
+
+Usage:
+  ai [OPTIONS] "YOUR QUERY"
+  cat file.txt | ai [OPTIONS] "OPTIONAL PROMPT"
+
+Options:
+  --config        Open configuration file
+  --debug         Enable debug mode
+  --debug-config  Print the loaded configuration (redacts keys)
+  --help, -h      Show this help message
+  --reinstall    Re-run the first-time setup
+
+Examples:
+  ai "How do I unzip a tar file?"
+  ai --config
+  cat error.log | ai "Explain this error briefly"
+
+---
+
 ### ADB
-Platform Tools are installed so Termux is adb ready and capable.
+Platform Tools are installed so Termux is adb ready and capable. You can use it to connect to your own device via Wireless ADB, or any other Android device for that matter. I haven't tested USB but I know Wireless ADB works.Your standard adb pair > adb connect flow.
 
 ### SMB Server Control
 
@@ -431,7 +466,7 @@ This means users **do not need to know the full Android package name**.
 
 Android applications launched this way open on the **phone screen**, not inside the XFCE desktop.
 
-This behavior is intentional.
+This behavior is intentional. I'll look into making it an option to open in XFCE at a future date.
 
 Example: launching **Google Meet** opens the meeting on the phone so the camera aligns with the user during video calls.
 
@@ -447,6 +482,7 @@ Scripts are automatically made executable using:
 chmod +x <script>
 ```
 
+To be sure though, you can always manually chmod +x your_script.sh/.py 
 Scripts are launched directly from their **original location** and are **not copied**.
 
 ---
@@ -480,6 +516,7 @@ Future updates will include:
 - Microsoft 365 workflow configuration
 - interactive environment selection in bootstrap
 - full RDeX uninstaller
+- possibly an "App Store" to automate pkg installation/updating/removal
 
 ---
 
