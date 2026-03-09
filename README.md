@@ -8,6 +8,22 @@ The project builds on the Termux ecosystem and integrates development tools, net
 
 ---
 
+## Install RDeX
+
+Inside Termux:
+
+```
+termux-setup-storage
+pkg install git
+cd ~/storage/shared
+git clone https://github.com/vee63b/RDeX.git
+cd RDeX
+bash initial_bootstrap.sh
+```
+
+The bootstrap script prepares the Termux environment and, optionally, installs the desktop. There are a few prompts during installation, so please keep an eye on it.
+
+---
 # Core Components
 
 RDeX is built around the following Termux ecosystem tools:
