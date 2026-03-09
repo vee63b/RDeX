@@ -20,7 +20,7 @@ The project builds on the Termux ecosystem and integrates development tools, net
 
 ## How RDeX Works
 
-RDeX turns a RedMagic phone into a lightweight desktop host using the Termux ecosystem.
+RDeX turns a RedMagic phone into a lightweight desktop host using the Termux ecosystem. The setup is 162 MB, once all packages are installed it takes up about 4.23 GB.
 
 ```
 Android Device
