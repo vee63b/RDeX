@@ -40,11 +40,12 @@ External display → desktop workspace
 ---
 ### Pre-Reqs
 ---
+
 You can get all 3 of these from F-Droid or Droidify, but I'd recommend the GitHub version since F-Droid/Droidify updates lag behind the GitHub version.
 
-Termux - https://github.com/termux/termux-app
-Termux:X11 - https://github.com/termux/termux-x11
-Termux:Widget - https://github.com/termux/termux-widget
+- Termux - https://github.com/termux/termux-app
+- Termux:X11 - https://github.com/termux/termux-x11
+- Termux:Widget - https://github.com/termux/termux-widget
 
 ---
 
