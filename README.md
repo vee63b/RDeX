@@ -359,20 +359,20 @@ Termai - A CLI AI Assistant
 A lightweight CLI tool for AI integration in your terminal.
 
 Usage:
-  ai [OPTIONS] "YOUR QUERY"
-  cat file.txt | ai [OPTIONS] "OPTIONAL PROMPT"
+-  ai [OPTIONS] "YOUR QUERY"
+-  cat file.txt | ai [OPTIONS] "OPTIONAL PROMPT"
 
 Options:
-  --config        Open configuration file
-  --debug         Enable debug mode
-  --debug-config  Print the loaded configuration (redacts keys)
-  --help, -h      Show this help message
-  --reinstall    Re-run the first-time setup
+-  --config        Open configuration file
+-  --debug         Enable debug mode
+-  --debug-config  Print the loaded configuration (redacts keys)
+-  --help, -h      Show this help message
+-  --reinstall    Re-run the first-time setup
 
 Examples:
-  ai "How do I unzip a tar file?"
-  ai --config
-  cat error.log | ai "Explain this error briefly"
+-  ai "How do I unzip a tar file?"
+-  ai --config
+-  cat error.log | ai "Explain this error briefly"
 
 ---
 
@@ -393,6 +393,18 @@ or
 ```
 
 Note that there is a preconfigured shortcut in Systems to launch the TUI for the SMB server. Because of the port that SMBD uses to get around Android restrictions, the SMB can be connected to using OwlFiles on Windows, or a file explore that accepts custom SMB configurations like FXFile in the play store.
+
+---
+
+### Code Server
+
+If you opted to install Code Server during the initial bootstrap, you can access it via app launcher, or by opening a web browser and navigating to:
+
+```
+localhost:8080 (locally from XFCE or Android Browser)
+{ipaddress}:8080 (from any device on the same LAN)
+```
+you should have configured a password for your Code Server during initial bootstrap. If you forgot open up terminal and use the command 'config-recap'
 
 ---
 
