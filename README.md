@@ -1,18 +1,49 @@
 # RDeX
 
-**RDeX (RedMagic Desktop eXperience)** is my attempt at a lightweight **XFCE desktop environment for Termux** designed to run natively on Android without proot or chroot.
+![License](https://img.shields.io/badge/license-GPL--3.0-blue)
+![Runtime](https://img.shields.io/badge/runtime-native--termux-brightgreen)
+![Desktop](https://img.shields.io/badge/desktop-XFCE-green)
+![Platform](https://img.shields.io/badge/platform-Android-orange)
+![Device](https://img.shields.io/badge/optimized-RedMagic-red)
 
-RDeX transforms a RedMagic device into a **desktop host environment** when connected to an external display, or can even  work directly on the phone screen.
+**RDeX (RedMagic Desktop eXperience)** is a lightweight **XFCE desktop environment for Termux** designed to run natively on Android without proot or chroot.
 
-The project builds on the Termux ecosystem and integrates development tools, network services, Android storage access, and desktop utilities into a deterministic provisioning system. I am no graphic artist, but yes, the following image was made in Gimp on my device.
+RDeX allows RedMagic devices to function as a **portable desktop workstation** when connected to an external display, while still supporting normal use of your phone.
+
+The project builds on the Termux ecosystem and integrates development tools, network services, Android storage access, and desktop utilities into a deterministic provisioning system.
 
 ---
+
 ![RDeX Overview](assets/git_img/Screenshot_Termux_X11_20260309_034236.png)
+
 ---
 
-## Install RDeX
+## How RDeX Works
 
-Inside Termux:
+RDeX turns a RedMagic phone into a lightweight desktop host using the Termux ecosystem.
+
+```
+Android Device
+      │
+   Termux
+      │
+ Termux:X11
+      │
+   XFCE
+      │
+External Display (Console Mode)
+```
+
+Phone screen → Android apps, camera, messaging, etc.  
+External display → desktop workspace
+
+---
+
+# Install RDeX
+
+The following instructions assume a **fresh installation of Termux**.
+
+Inside **Termux** run:
 
 ```
 termux-setup-storage
@@ -23,32 +54,134 @@ cd RDeX
 bash initial_bootstrap.sh
 ```
 
-The bootstrap script prepares the Termux environment and, optionally, installs the desktop. There are a few prompts during installation, so please keep an eye on it.
+After running `termux-setup-storage`, the only package installed manually is **git**.
+
+The system is **not updated or upgraded at this stage**, and this is intentional.
+
+The `initial_bootstrap.sh` script:
+
+- adds the **TUR repository**
+- updates all repositories
+- upgrades all packages
+
+Git is installed early only so the repository can be cloned.
+
+There are a few prompts during installation, so keep an eye on the terminal.
 
 ---
+
+# Launching RDeX (Termux:Widget)
+
+RDeX is designed to be launched using **Termux:Widget**, allowing the desktop to start directly from the Android home screen without opening the Termux terminal.
+
+During installation, RDeX installs launcher scripts to:
+
+`~/.shortcuts`
+
+This directory is used by **Termux:Widget**.
+
+## Recommended Launch Method
+
+1. Install **Termux:Widget**
+2. Add a **Termux widget** to your Android home screen
+3. Select the script `launch_rdex.sh`
+
+This launches the RDeX desktop environment directly.
+
+## Manual Launch (Optional)
+
+RDeX can also be started manually from the Termux shell:
+
+```
+rdex
+```
+
+This simply runs the same launcher script used by the widget.
+
+---
+
 # Core Components
 
 RDeX is built around the following Termux ecosystem tools:
 
-- **Termux** – Linux userspace environment
-- **Termux:X11** – X server used to display the desktop
-- **Termux:Widget** – optional launcher integration
+- **Termux** – Linux userspace environment  
+- **Termux:X11** – X server used to display the desktop  
+- **Termux:Widget** – launcher integration  
 
-These components work together to provide a **native desktop experience on Android**.
+These components provide a **native desktop experience on Android**.
 
 RDeX does **not use**:
 
-- proot
-- chroot
-- containers
+- proot  
+- chroot  
+- containers  
 
 Everything runs directly inside the **Termux userspace**.
 
 ---
 
+# Designed for a Google Workspace Workflow
+
+The current version of RDeX is configured around a **Google Workspace (G-Suite) productivity workflow**.
+
+Common tools used within this current environment include:
+
+- Google Docs
+- Google Sheets
+- Google Slides
+- Gmail
+- Google Drive
+- Google Meet
+
+---
+
+## Browser Design
+
+RDeX uses two browsers with different roles.
+
+### Firefox
+
+Firefox is the **primary browser** used for general browsing and account-based services.
+
+Firefox is used instead of Chromium because Chromium in Termux does not support signing into and syncing a Google Chrome profile.
+
+---
+
+### Chromium
+
+Chromium is included as a **lightweight browser used for web applications**.
+
+Using Chromium application mode:
+
+```
+chromium-browser --app=<url>
+```
+
+websites can run as standalone desktop applications.
+
+This allows tools like Google Docs and Google Sheets to behave like native desktop applications inside the XFCE environment.
+
+---
+
+## Planned Microsoft 365 Workflow
+
+A **Microsoft 365 workflow configuration** is planned for a future version of RDeX.
+
+Once implemented, the bootstrap installer will allow users to select between:
+
+- Google Workspace environment
+- Microsoft 365 environment
+- Both environments
+
+This functionality is **not yet implemented**.
+
+---
+
 # Designed for RedMagic Devices
 
-RDeX is specifically designed for **RedMagic phones** to take advantage of **Console Mode (Host Mode)**.
+RDeX is designed specifically for **RedMagic phones** to take advantage of **Console Mode (Host Mode)**.
+
+Console Mode is accessed through **SmartCast** when an external display is connected.
 
 This allows the device to behave like a small desktop computer when connected to:
 
@@ -57,7 +190,7 @@ This allows the device to behave like a small desktop computer when connected to
 - wireless casting displays
 - USB-C display outputs
 
-When connected to an external display, the phone acts as the **desktop host**, displaying the desktop on the external display and keeping your device usable as your mobile phone.
+When connected to an external display, the phone acts as the **desktop host**, displaying the desktop on the external display while the phone remains usable as a mobile device.
 
 ---
 
@@ -79,17 +212,7 @@ Requirements:
 Workflow:
 
 1. Start **Termux:X11**
-2. Open **Termux**
-3. Run:
-
-```
-rdex
-```
-
-Features:
-
-- full keyboard support
-- full mouse support
+2. Launch RDeX using either the **Termux widget shortcut** or the `rdex` command
 
 ---
 
@@ -101,20 +224,11 @@ Requirements:
 
 - Termux
 - Termux:X11
-- screen casting in mirror mode (Connect SmartCast and simply don't switch your device into Game Space mode) or USB-C output
-
-The desktop runs on the device while the external display mirrors it.
-
-Features:
-
-- full keyboard support
-- full mouse support
+- screen casting in mirror mode or USB-C display output
 
 ---
 
 ## Mode 3 – RedMagic Console Mode (Recommended)
-
-RedMagic devices support **Console Mode**, which turns the phone into a desktop host.
 
 Requirements:
 
@@ -123,117 +237,57 @@ Requirements:
 - external display
 - keyboard and mouse
 
-## Entering RedMagic Console Mode
-
 ---
 
-### Method 1 — SmartCast Extended Mode
+# Entering RedMagic Console Mode
 
-This method works on most displays but may result in incorrect resolution.
+### Method 1 — SmartCast Extended Mode
 
 Steps:
 
 1. Open **SmartCast**
 2. Connect to an external display
 3. Launch **Termux:X11**
-4. Tap the **SmartCast floating icon**
+4. Tap the SmartCast floating icon
 5. Select **Extended Mode**
-
-Behavior:
-
-- The phone detaches into a **touchpad for the external screen**
-- The phone can still be used normally
 
 Limitations:
 
-- The external display may run at an **incorrect resolution**
-- Some displays show **banding** because most RedMagic devices use **ultrawide aspect ratios**
+- resolution may not match correctly
+- some displays show banding due to RedMagic ultrawide aspect ratios
 
 ---
 
 ### Method 2 — Game Space Console Mode (Recommended)
 
-This is the preferred method for RDeX.
-
 Steps:
 
 1. Open **SmartCast**
 2. Connect to an external display
-3. Flip the **Game Space switch** on the device
-4. The device automatically enters **Console Mode**
-5. Launch **Termux:X11** from the Console launcher
-6. Start the desktop on your device using either the Termux rdex command, or Termux:widget 
+3. Flip the **Game Space switch**
+4. The device enters **Console Mode**
+5. Launch **Termux:X11**
+6. Start RDeX using the widget or `rdex`
 
-Input behavior in Console Mode:
+---
+
+# Input Behavior in Console Mode
 
 | Device | Behavior |
 |------|------|
-| Mouse | right-click not available |
-| Keyboard | Super / Meta key unavailable |
+Mouse | right-click not available |
+Keyboard | Super / Meta key unavailable |
 
-I've baked in 2 alternate mappings to right click:
+RDeX provides alternate right-click mappings:
 
 ```
 CTRL + .
 ALT + .
 ```
 
-These both function as right-click wherever your mouse cursor is at.
-
----
-
-# Installation
-
-## Prerequisites
-
-Install the following applications:
-
-- Termux
-- Termux:X11
-- Termux:Widget (recommended)
-
-I shouldn't need to say this, but avoid the Play Store version of Termux unless you want Scoped Storage issues. Use F-Droid or GitHub version, no mixing and matching. Either all 3 from F-Droid, or all 3 from GitHub
-
----
-
-## Repository Location
-
-The **RDeX directory must exist at the root of internal storage** so the scripts can locate required assets.
-
-Example location:
-
-```
-/storage/emulated/0/RDeX
-```
-
-This is accessed inside Termux as:
-
-```
-~/storage/shared/RDeX
-```
-
----
-
-## Install RDeX
-
-Inside Termux:
-
-```
-termux-setup-storage
-pkg install git
-cd ~/storage/shared
-git clone https://github.com/vee63b/RDeX.git
-cd RDeX
-bash initial_bootstrap.sh
-```
-
-The bootstrap script prepares the Termux environment and, optionally, installs the desktop. There are a few prompts during installation, so please keep an eye on it.
-
 ---
 
 # Installation Pipeline
-
-RDeX uses a **two-stage provisioning system**.
 
 ```
 initial_bootstrap.sh
@@ -245,110 +299,31 @@ launch_rdex.sh
 
 ---
 
-## Stage 1 – Bootstrap
-
-`initial_bootstrap.sh`
-
-This prepares the Termux environment.
-
-Tasks performed:
-
-- repository configuration
-- package installation
-- SSH setup
-- Samba file sharing
-- optional code-server
-- Android storage integration
-- shortcut deployment
-- alias configuration
-
-It also installs:
-
-```
-Termai CLI AI assistant
-```
-
----
-
-## Stage 2 – Desktop Provisioning
-
-`install_RDeX.sh`
-
-This installs the runtime desktop environment:
-
-- XFCE
-- Termux:X11 integration
-- pulseaudio
-- browsers
-- system utilities
-
----
-
 # Deterministic Desktop Restore
 
 RDeX restores a **preconfigured XFCE desktop snapshot** instead of scripting configuration.
 
 Location:
 
-```
-assets/base_state/rdex-base.zip
-```
-
-During provisioning the script:
-
-1. stops XFCE processes
-2. clears runtime cache
-3. removes existing configuration
-4. restores the base desktop state
-5. fixes permissions
-6. rebuilds the desktop database
-
-This ensures **identical desktop configuration across installs**.
+`assets/base_state/rdex-base.zip`
 
 ---
 
-# Launching the Desktop
+## Recovery / Resetting the Desktop
 
-Start the desktop with:
+RDeX provisioning is **idempotent**.
 
-```bash
-rdex
-```
-
-The launcher script:
+If the desktop becomes misconfigured, simply run:
 
 ```
-~/.shortcuts/launch_rdex.sh
+bash install_RDeX.sh
 ```
 
-This script:
-
-- attempts to starts Termux:X11, if it doesn't you'll have to manually open x11
-- initializes pulseaudio
-- optionally launches code-serverif you opted to install it
-- starts XFCE
-- monitors the session
-- performs cleanup when the session ends
-
----
-
-# Termux Widget Integration
-
-RDeX installs scripts to:
-
-```
-~/.shortcuts
-```
-
-This directory is used by **Termux:Widget**.
-
-This allows launching RDeX directly from the Android home screen without opening Termux; you simply need to add a termux:widget shortcut on your home screen, selecting one of the existing shortcuts.
+This restores the environment to its original configured state.
 
 ---
 
 # Available Commands
-
-After installation, the following commands are available after refreshing or restarting Termux:
 
 ```
 rdex           -> Launch RDeX desktop
@@ -364,22 +339,23 @@ ai             -> Invoke CLI AI assistant
 
 # Management Tools
 
-RDeX includes several desktop utilities.
+### ADB
+Platform Tools are installed so Termux is adb ready and capable.
 
 ### SMB Server Control
-
-Start / stop Samba:
 
 ```
 start-smb
 stop-smb
 ```
 
-or use the terminal interface:
+or
 
 ```
 ~/.shortcuts/smb_tui.sh
 ```
+
+Note that there is a preconfigured shortcut in Systems to launch the TUI for the SMB server. Because of the port that SMBD uses to get around Android restrictions, the SMB can be connected to using OwlFiles on Windows, or a file explore that accepts custom SMB configurations like FXFile in the play store.
 
 ---
 
@@ -391,14 +367,14 @@ config-recap
 
 Displays:
 
-- SSH connection command
+- SSH command
 - SMB address
 - code-server URL
 - service status
 
 ---
 
-### Application Generator
+# Application Generator
 
 Tool:
 
@@ -409,10 +385,69 @@ url_to_app.sh
 Creates XFCE launchers for:
 
 - web apps
-- Android applications
+- Android apps
 - custom scripts
 
-Applications appear in the XFCE menu.
+Applications are created in:
+
+```
+~/.local/share/applications
+```
+
+---
+
+## Launch Types
+
+### Web App
+
+Uses Chromium application mode:
+
+```
+chromium-browser --app=<url>
+```
+
+---
+
+### Android App
+
+Uses Android Activity Manager:
+
+```
+am start <package>
+```
+
+When creating an Android application launcher, the **name entered at the beginning of the generator is used as a search term**.
+
+The script searches installed Android packages for matches.
+
+Example workflow:
+
+1. Enter application name (example: `meet`)
+2. Installed packages are searched for matches
+3. If multiple matches exist, you can select the correct package
+4. The launcher is created using the selected package name
+
+This means users **do not need to know the full Android package name**.
+
+Android applications launched this way open on the **phone screen**, not inside the XFCE desktop.
+
+This behavior is intentional.
+
+Example: launching **Google Meet** opens the meeting on the phone so the camera aligns with the user during video calls.
+
+---
+
+### Custom Script
+
+Creates a launcher for any executable script.
+
+Scripts are automatically made executable using:
+
+```
+chmod +x <script>
+```
+
+Scripts are launched directly from their **original location** and are **not copied**.
 
 ---
 
@@ -438,7 +473,15 @@ RDeX
 
 ---
 
-It's currently 4:30 AM and I feel like I am making typos in this readme, so I'll call it a night and update this later with images as well as try to condense it to not be so convoluted.
+# Planned Improvements
+
+Future updates will include:
+
+- Microsoft 365 workflow configuration
+- interactive environment selection in bootstrap
+- full RDeX uninstaller
+
+---
 
 # License
 
