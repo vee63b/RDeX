@@ -4,7 +4,7 @@
 
 RDeX transforms a RedMagic device into a **desktop host environment** when connected to an external display, or can even  work directly on the phone screen.
 
-The project builds on the Termux ecosystem and integrates development tools, network services, Android storage access, and desktop utilities into a deterministic provisioning system.
+The project builds on the Termux ecosystem and integrates development tools, network services, Android storage access, and desktop utilities into a deterministic provisioning system. I am no graphic artist, but yes, the following image was made in Gimp on my device.
 
 ---
 ![RDeX Overview](assets/git_img/Screenshot_Termux_X11_20260309_034236.png)
@@ -438,7 +438,7 @@ RDeX
 
 ---
 
-It's currently 3 AM and I feel like I am making typos in this readme, so I'll call it a night and update this later with images as well as try to condense it to not be so convoluted.
+It's currently 4:30 AM and I feel like I am making typos in this readme, so I'll call it a night and update this later with images as well as try to condense it to not be so convoluted.
 
 # License
 
