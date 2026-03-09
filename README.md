@@ -45,6 +45,7 @@ You can get all 3 of these from F-Droid or Droidify, but I'd recommend the GitHu
 Termux - https://github.com/termux/termux-app
 Termux:X11 - https://github.com/termux/termux-x11
 Termux:Widget - https://github.com/termux/termux-widget
+
 ---
 
 # Install RDeX
