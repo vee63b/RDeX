@@ -275,6 +275,7 @@ echo "config-recap   -> Show connection & service status"
 echo "start-smb      -> Start Samba service"
 echo "stop-smb       -> Stop Samba service"
 echo "sdcard         -> Go to shared storage"
+echo "ai             -> Invoke CLI AI Assist"
 echo "=========================================="
 
 echo ""
