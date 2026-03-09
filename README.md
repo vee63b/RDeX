@@ -480,7 +480,7 @@ This means users **do not need to know the full Android package name**.
 
 Android applications launched this way open on the **phone screen**, not inside the XFCE desktop.
 
-This behavior is intentional. I'll look into making it an option to open in XFCE at a future date.
+This behavior is intentional.
 
 Example: launching **Google Meet** opens the meeting on the phone so the camera aligns with the user during video calls.
 
