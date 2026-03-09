@@ -96,7 +96,7 @@ This directory is used by **Termux:Widget**.
 2. Add a **Termux widget** to your Android home screen
 3. Select the script `launch_rdex.sh`
 
-This launches the RDeX desktop environment directly.
+This launches the RDeX desktop environment directly. Remember to log out of the desktop when you're done with it to cleanly exit the script.
 
 ## Manual Launch (Optional)
 
