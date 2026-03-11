@@ -296,6 +296,7 @@ CTRL + .
 ALT + .
 ```
 Both will *Right-Click* where the mouse cursor is.
+
 ---
 
 # Installation Pipeline
